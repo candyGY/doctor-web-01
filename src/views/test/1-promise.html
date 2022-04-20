@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+<script>
+    /**
+     * resolve  解决了  成功的返回结果处理函数
+     *
+     * reject   拒绝了 失败的返回结果处理函数
+     */
+    /*new Promise(function (resolve, reject) {
+        console.log('hello Promise......');
+    });
+
+    console.log('hello main......');*/
+
+
+      /*setTimeout(function () {
+        console.log('first')
+        setTimeout(function () {
+            console.log('two')
+            setTimeout(function () {
+                console.log('three')
+            },3000)
+        },4000)
+    },1000)
+
+    console.log('hello main......')*/
+
+    /*new Promise(function (resolve,reject) {
+        setTimeout(function () {
+            console.log('first')
+            resolve()   // 该Promise异步函数执行成功   可以继续继续了
+        },1000)
+    }).then(function () {
+        return new Promise(function (resolve,reject) {
+            setTimeout(function () {
+                console.log('two')
+                resolve()
+            },2000)
+        })
+    })
+    .then(function () {
+       setTimeout(function () {
+           console.log('three')
+       },1000)
+    })*/
+
+     /*new Promise(function (resolve, reject) {
+         setTimeout(function () {
+             console.log("First");
+             resolve();
+         }, 1000);
+     }).then(function () {
+         return new Promise(function (resolve, reject) {
+             setTimeout(function () {
+                 console.log("Second");
+                 resolve();
+             }, 4000);
+         });
+     }).then(function () {
+         setTimeout(function () {
+             console.log("Third");
+         }, 3000);
+     });*/
+
+    /*new Promise(function (resolve, reject) {
+        var a = 100;
+        var b = 10;
+        if (b == 0) reject("Divide zero");
+        else resolve(a / b);
+    }).then(function (value) {
+        console.log("a / b = " + value);
+    }).catch(function (err) {
+        console.log("异常："+err);
+    }).finally(function () {
+        console.log("End");
+    });
+
+    console.log("main................");*/
+
+    /*new Promise(function (resolve, reject) {
+        console.log(1111);
+        resolve(2222);
+    }).then(function (value) {
+        console.log(value);
+        return 3333;
+    }).then(function (value) {
+        console.log(value);
+        throw "An error";
+    }).then(function () {
+        console.log("4444444444444444");
+    }).catch(function (err) {
+    console.log("异常"+err);
+    });*/
+
+     // 返回一个Promise对象
+   /*  function promiseTest(time,message) {
+        return new Promise(function (resolve, reject) {
+              // 业务
+             setTimeout(function () {
+                 console.log(message);
+                 resolve();
+             }, time);
+         })
+     }
+
+     promiseTest(1000,"First")
+     .then(function () {
+         return promiseTest(2000,"Two")
+     }).then(function () {
+         promiseTest(2000,"Three")
+     })
+*/
+
+    async function testPromiseWait() {
+        // 同步代码
+        let value = await new Promise(
+            function (resolve, reject) {
+                console.log("promise..............")
+                resolve("Return value");
+            }
+        );
+        // 下面代码
+        console.log(value);
+    }
+
+    testPromiseWait()
+
+</script>
+</body>
+</html>
