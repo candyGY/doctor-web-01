@@ -49,6 +49,16 @@
                                 <span v-else>获 得 中...</span>
                             </el-button>
                         </el-form-item>
+                        <el-form-item style="width:100%;">
+                            <el-button
+                                    @click="logout"
+                                    :loading="loading"
+                                    type="primary"
+                                    style="width:100%;">
+                                <span v-if="!loading">安全退出</span>
+                                <span v-else>退 出 中...</span>
+                            </el-button>
+                        </el-form-item>
                         <el-radio-group v-model="agree" style="margin:0px 0px 25px 0px;">
                             <el-radio>同意隐私协议和服务条款</el-radio>
                         </el-radio-group>
@@ -131,8 +141,8 @@
 </template>
 
 <script>
-    import {login,list} from '@/api/login'
-    import {setToken} from '@/utils/auth'
+    import {login,list,logout} from '@/api/login'
+    import {setToken,removeToken} from '@/utils/auth'
     export default {
         name: "loginIndex",
         data(){
@@ -166,6 +176,18 @@
                     console.log(response)
                 })
                 .catch(err=>{
+                    console.log(err)
+                })
+            },
+            logout(){
+                logout().then(response=>{
+                    console.log('==========用户退出========')
+                    console.log(response)
+                    if(response.code==200){
+                        //移除cookie token
+                        removeToken();
+                    }
+                }).catch(err=>{
                     console.log(err)
                 })
             }

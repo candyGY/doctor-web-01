@@ -59,7 +59,7 @@ service.interceptors.response.use(res => {
     console.log(code,"res.data.code");
     // 获取错误信息
     const msg = errorCode[code] || res.data.msg || errorCode['default']
-      console.log(msg,msg);
+      console.log(msg);
       if (code === 401) {
       ElMessageBox.confirm(
           '登录状态已过期，您可以继续留在该页面，或者重新登录',
@@ -91,7 +91,7 @@ service.interceptors.response.use(res => {
     }
   },
   error => {
-    console.log('err' + error)
+    console.log(error)
     let { message } = error;
     if (message == "Network Error") {
       message = "后端接口连接异常";
