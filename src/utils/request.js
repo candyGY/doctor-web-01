@@ -6,8 +6,15 @@ import errorCode from '@/utils/errorCode'
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 // 创建axios实例
 const service = axios.create({
-  // axios中请求配置有baseURL选项，表示请求URL公共部分   VUE_APP_BASE_API变量值/api/getList
-  baseURL: process.env.VUE_APP_BASE_API,
+  // axios中请求配置有baseURL选项，表示请求URL公共部分   VUE_APP_BASE_API变量值/api/getList  /dev-api
+  /*
+  * 解决跨域的第一种方式，将request.js中的baseURL改为接口地址
+  *     baseURL: process.env.VUE_APP_BASE_API,
+  * 它会去到.env.development找VUE_APP_BASE_API
+  * 然后去vue.config.js找代理
+  * */
+  //baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: "http://localhost:8889",
   // 超时
   timeout: 10000
 })
